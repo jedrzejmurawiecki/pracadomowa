@@ -8,10 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ArenaTest {
+public class TestNewProject {
 
     private WebDriver driver;
 
@@ -20,13 +18,6 @@ public class ArenaTest {
         WebDriverManager.chromedriver().setup();
     }
 
-    @Test
-    public void myFirstSeleniumTest() {
-        driver = new ChromeDriver();
-        driver.get("http://demo.testarena.pl/zaloguj");
-        Assertions.assertThat(driver.getTitle()).contains("TestArena");
-        driver.quit();
-    }
 
     @Test
     public void myFirstInteractionTest() {
@@ -40,10 +31,25 @@ public class ArenaTest {
         password.sendKeys("sumXQQ72$L");
         login.click();
 
-        new WebDriverWait(driver, 3)
-                .until(ExpectedConditions.presenceOfElementLocated(By.id("footer")));
+        WebElement admin = driver.findElement(By.className("header_admin"));
+        admin.click();
 
-        Assertions.assertThat(driver.getTitle()).contains("Kokpit");
+        WebElement add = driver.findElement(By.partialLinkText("ADD"));
+        add.click();
+
+        WebElement tytul = driver.findElement(By.id("name"));
+        tytul.sendKeys("Jędrzej");
+
+        WebElement prefix = driver.findElement(By.id("prefix"));
+        prefix.sendKeys("JM");
+
+        WebElement save = driver.findElement(By.id("save"));
+        save.click();
+
+        WebElement projects = driver.findElement(By.partialLinkText("Projects"));
+        projects.click();
+
+        Assertions.assertThat(driver.findElements(By.partialLinkText("Jędrzej")));
         driver.quit();
     }
 
