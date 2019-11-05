@@ -1,4 +1,4 @@
-package org.vistula.selenium.test.part1;
+package newproject;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.assertj.core.api.Assertions;
@@ -38,10 +38,10 @@ public class TestNewProject {
         add.click();
 
         WebElement tytul = driver.findElement(By.id("name"));
-        tytul.sendKeys("Jędrzej");
+        tytul.sendKeys("jmurawiecki");
 
         WebElement prefix = driver.findElement(By.id("prefix"));
-        prefix.sendKeys("JM");
+        prefix.sendKeys("jm");
 
         WebElement save = driver.findElement(By.id("save"));
         save.click();
@@ -49,7 +49,7 @@ public class TestNewProject {
         WebElement projects = driver.findElement(By.partialLinkText("Projects"));
         projects.click();
 
-        Assertions.assertThat(driver.findElements(By.partialLinkText("Jędrzej")));
+        Assertions.assertThat(driver.findElements(By.partialLinkText("jmurawiecki")));
         driver.quit();
     }
 
